@@ -95,5 +95,26 @@ Ext.define('kahunja.controller.Units', {
     	// load the store
     	store.load();
     },
+    
+    /**
+     * Creates a new record and prepares it for editing
+     * @param {Ext.button.Button} button
+     * @param {Ext.EventObject} e
+     * @param {Object} eOpts
+     */
+    add: function( button, e, eOpts ) {
+    	var me = this,
+    		grid = me.getUnitList(),
+    		plugin = grid.editingPlugin,
+    		store = grid.getStore();
+    	// if we're already editing, don't allow new record insert
+    	if( plugin.editing ) {
+    		// show error message
+    		Ext.Msg.alert( 'Attention', 'Please finish editing before inserting a new record' );
+    		return false;
+    	}
+    	console.log('add functionality is here...');
+    	store.insert( 0, {} );
+    },
 });    
     
